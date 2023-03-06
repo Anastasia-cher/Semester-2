@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 
@@ -38,7 +39,7 @@ namespace BWT
         static string Encryption(string str, ref int point)
         {
             string temp = str;
-            var strings = new string[temp.Length];
+            string[] strings = new string[temp.Length];
             strings[temp.Length - 1] = str;
             string resulte = null;
 
@@ -65,7 +66,22 @@ namespace BWT
         //Return is string
         static string Decryption(string encryptedStr, int point)
         {
-            return "";
+            List<string> temp = new List<string>();
+            for (int i = 0; i < encryptedStr.Length; i++)
+            {
+                temp.Add("" + encryptedStr[i]);
+            }
+            while (temp[0].Length != encryptedStr.Length)
+            {
+                temp.Sort();
+                for (int i = 0; i < encryptedStr.Length; i++)
+                {
+                    temp[i] = encryptedStr[i] + temp[i];
+                    Console.WriteLine(temp[i]);
+                }
+                temp.Sort();
+            }
+            return temp[point];
         }
 
         static bool Tests()
@@ -91,7 +107,6 @@ namespace BWT
             return true;
         }
 
-
         static void Main(string[] args)
         {
             if (Tests())
@@ -103,7 +118,9 @@ namespace BWT
                 Console.Write($"Encrypted string:");
                 Print(encryptedStr);
                 Console.WriteLine($"Point: {point}");
-                /*Decryption(encryptedStr, point);*/
+                string decryptedStr = Decryption(encryptedStr, point);
+                Console.Write($"Decrypted string:");
+                Print(decryptedStr);
             }
         }
 
