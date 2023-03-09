@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace StackCalculator
+﻿namespace StackCalculator;
+internal interface IStack
 {
-
-    /// Interface for stack.
     public interface IStack
     {
         /// Checks for emptiness
@@ -25,4 +22,3 @@ namespace StackCalculator
         void Clear();
     }
 }
-
