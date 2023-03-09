@@ -38,11 +38,7 @@ static bool TestOfSortByBubble()
 {
     int[] array = { 5, 6, 3, 4, 8, 0 };
     SortByBubble(array);
-    if (CheckSortedArray(array))
-    {
-        return true;
-    }
-    return false;
+    return CheckSortedArray(array);
 }
 
 if (TestOfSortByBubble())
