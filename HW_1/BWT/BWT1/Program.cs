@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿
+using System.Text;
 // The method that prints the string
 // Param is string
 void Print(string str)
@@ -28,14 +29,11 @@ string Rotate(string str)
 // A method that converts a string using BWT
 // Param is string and its starting point
 // Return is string
-string Encryption(string str, out int point)
+(string? resultString, int point) Encryption(string str, int point)
 {
     string temp = str;
     var table = new string[temp.Length];
     table[temp.Length - 1] = str;
-    string? resulte = null;
-    point = 0;
-
     for (int i = 0; i < temp.Length - 1; i++)
     {
         temp = Rotate(temp);
@@ -43,15 +41,16 @@ string Encryption(string str, out int point)
     }
     Array.Sort(table);
 
+    string? resultString = null;
     for (int i = 0; i < table.Length; i++)
     {
-        resulte += table[i][str.Length - 1];
+        resultString += table[i][str.Length - 1];
         if (table[i] == str)
         {
             point = i;
         }
     }
-    return resulte;
+    return (resultString, point);
 }
 
 // A method that decrypts a string using BWT
@@ -81,7 +80,7 @@ bool Tests()
     string str1 = "MJKSB.CNSKA.CNMFJ";
     int point1 = 0;
     string result1 = "ABKS..MMFSJNJCCKN";
-    if (Encryption(str1, out point1) != result1)
+    if (Encryption(str1, point1) != (result1, 12))
     {
         Console.WriteLine("Encryption error");
         return false;
@@ -102,9 +101,9 @@ bool Tests()
 if (Tests())
 {
     Console.Write("Enter the line: ");
-    string str = Console.ReadLine();
+    string? str = Console.ReadLine();
     int point = 0;
-    string encryptedStr = Encryption(str, out point);
+    (string? encryptedStr, point) = Encryption(str, point);
     Console.Write($"Encrypted string:");
     Print(encryptedStr);
     Console.WriteLine($"Point: {point}");
