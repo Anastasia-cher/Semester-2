@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Remove="C:\Users\Анастасия\Desktop\My project C#\HW_2\StackCalculator\StackCalculator\.editorconfig" />
+    <EditorConfigFiles Remove="HW_2\StackCalculator\StackCalculator\.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="C:\Users\Анастасия\Desktop\My project C#\HW_2\StackCalculator\StackCalculator\.editorconfig" />
+    <None Include="HW_2\StackCalculator\StackCalculator\.editorconfig" />
   </ItemGroup>
 
 </Project>

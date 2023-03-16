@@ -1,25 +1,34 @@
 ﻿namespace StackCalculator;
 
-internal class StackArray : IStack
+/// <summary>
+/// Array-based stack, organized by principle of "last in — first out".
+/// </summary>
+public class StackArray : IStack
 {
     private int[] stackElements;
     private int counter;
 
 
-    /// Initializes a new instance of the class StackArray
+    /// <summary>
+    /// Initializes a new instance of the <see cref="StackArray"/> class.
+    /// </summary>
     public StackArray()
     {
         stackElements = new int[10];
     }
 
 
-    /// Checks for emptiness
-    /// returns true if the stack is empty
+    /// <summary>
+    /// Checks for emptiness.
+    /// </summary>
+    /// <returns>True if the stack is empty</returns>
     public bool IsEmpty()
         => counter == 0;
 
-    /// Adds element to a top of the stack
-    /// param is element to add
+    /// <summary>
+    /// Adds element to a top of the stack.
+    /// </summary>
+    /// <param name="value">Element to add</param>
     public void Push(int value)
     {
         if (counter == stackElements.Length)
@@ -36,8 +45,11 @@ internal class StackArray : IStack
         Array.Resize(ref stackElements, stackElements.Length * 2);
     }
 
-    /// Gets element from a top of the stack and removes it
-    /// returns element that was on the top
+    /// <summary>
+    /// Gets element from a top of the stack and removes it.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">Thrown when the stack is empty</exception>
+    /// <returns>Element that was on the top</returns>
     public int Pop()
     {
         if (IsEmpty())
@@ -51,7 +63,9 @@ internal class StackArray : IStack
         return value;
     }
 
-    /// Removes all elements from the stack
+    /// <summary>
+    /// Removes all elements from the stack.
+    /// </summary>
     public void Clear()
     {
         stackElements = new int[10];
