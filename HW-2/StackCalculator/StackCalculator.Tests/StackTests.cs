@@ -19,21 +19,21 @@ public class StackTest
     }
 
     [TestCaseSource(nameof(Stacks))]
-    public void PushTest(IStack stack)
+    public void StackSouldTakeTheValueAfterPushTest(IStack stack)
     {
         stack.Push(1);
         Assert.IsFalse(stack.IsEmpty());
     }
 
     [TestCaseSource(nameof(Stacks))]
-    public void PopTest(IStack stack)
+    public void StackShouldOutputTheValueAfterPopTest(IStack stack)
     {
         stack.Push(2);
         Assert.That(stack.Pop(), Is.EqualTo(2));
     }
 
     [TestCaseSource(nameof(Stacks))]
-    public void ClearTest(IStack stack)
+    public void StackShouldBeIsEmptyAfterClearTest(IStack stack)
     {
         stack.Push(5);
         stack.Clear();
