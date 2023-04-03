@@ -1,55 +1,52 @@
-using static Trie.Tries;
-
 namespace Trie;
 
 public class Tests
 {
-    [SetUp]
-    public void Setup()
+    static IEnumerable<Tries> Tries
     {
+        get
+        {
+            yield return new Tries();
+        }
     }
 
-    [Test]
-    public void Test1()
+    [TestCaseSource(nameof(Tries))]
+    public void TireShouldAddWordsAndCalculateTheSizeCorrectly(Tries trie)
     {
-        var trie1 = new Tries();
-        trie1.CreateTrie();
-        trie1.Add("a");
-        trie1.Add("b");
-        trie1.Add("c");
-        Assert.That(trie1.Size, Is.EqualTo(3));
+        trie.CreateTrie();
+        trie.Add("a");
+        trie.Add("b");
+        trie.Add("c");
+        Assert.That(trie.Size, Is.EqualTo(3));
     }
 
-    [Test]
-    public void Test2()
+    [TestCaseSource(nameof(Tries))]
+    public void TrieShouldCountAllWordsStartingWithTheSamePrefix(Tries trie)
     {
-        var trie2 = new Tries();
-        trie2.CreateTrie();
-        trie2.Add("a");
-        trie2.Add("ad");
-        trie2.Add("caa");
-        trie2.Add("nd");
-        Assert.That(trie2.HowManyStartsWithPrefix("a"), Is.EqualTo(2));
+        trie.CreateTrie();
+        trie.Add("a");
+        trie.Add("ad");
+        trie.Add("caa");
+        trie.Add("nd");
+        Assert.That(trie.HowManyStartsWithPrefix("a"), Is.EqualTo(2));
     }
 
-    [Test]
-    public void Test3()
+    [TestCaseSource(nameof(Tries))]
+    public void TrieShouldContainAWordThatIsAPrefixOfAnotherWord(Tries trie)
     {
-        var trie3 = new Tries();
-        trie3.CreateTrie();
-        trie3.Add("dog");
-        trie3.Add("do");
-        Assert.IsTrue(trie3.Contains("do"));
+        trie.CreateTrie();
+        trie.Add("dog");
+        trie.Add("do");
+        Assert.IsTrue(trie.Contains("do"));
     }
 
-    [Test]
-    public void Test4()
+    [TestCaseSource(nameof(Tries))]
+    public void TrieShouldRemoveAWordThatIsAPrefixOfAnotherWord(Tries trie)
     {
-        var trie4 = new Tries();
-        trie4.CreateTrie();
-        trie4.Add("dog");
-        trie4.Add("do");
-        trie4.Remove("do");
-        Assert.IsFalse(trie4.Contains("do"));
+        trie.CreateTrie();
+        trie.Add("dog");
+        trie.Add("do");
+        trie.Remove("do");
+        Assert.IsFalse(trie.Contains("do"));
     }
 }
