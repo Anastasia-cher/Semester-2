@@ -1,1 +1,1 @@
-﻿using Router;
+﻿var prim = new Router.Router();
